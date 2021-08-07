@@ -1,0 +1,8 @@
+${AnsiBackground.DEFAULT}${AnsiColor.GREEN}                                    
+  _ __     ___  __  __   ___    ___ 
+ | '_ \   / _ \ \ \/ /  / _ \  / __|
+ | | | | |  __/  >  <  | (_) | \__ \
+ |_| |_|  \___| /_/\_\  \___/  |___/
+                                    
+${AnsiColor.DEFAULT} :: Backend Prueba Técnica Nexos Software :: 
+ :: Spring Boot${spring-boot.formatted-version} :: 
