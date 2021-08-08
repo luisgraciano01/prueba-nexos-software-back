@@ -54,7 +54,7 @@ public class UsuarioControllerImpl implements UsuarioController {
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
 			return ResponseEntity
-					.status(HttpStatus.INTERNAL_SERVER_ERROR)
+					.status(HttpStatus.OK)
 					.body(new RespuestaDto(false, "Ha ocurrido un error durante la consulta de los usuarios."));
 		}
 	}

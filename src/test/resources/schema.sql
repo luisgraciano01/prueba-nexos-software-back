@@ -1,3 +1,9 @@
+DROP TABLE IF EXISTS mercancia;
+DROP TABLE IF EXISTS usuario;
+DROP TABLE IF EXISTS cargo;
+
+DROP SEQUENCE IF EXISTS seq_mercancia;
+
 CREATE TABLE cargo (
 	id_cargo INT NOT NULL,
 	nombre VARCHAR(50) NOT NULL,
