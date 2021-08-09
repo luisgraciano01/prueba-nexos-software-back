@@ -28,7 +28,7 @@ CREATE SEQUENCE seq_mercancia
 	NO CYCLE;
 
 CREATE TABLE mercancia (
-	id_mercancia INT NOT NULL DEFAULT nextval('seq_mercancia'::regclass),
+	id_mercancia INT NOT NULL,
 	id_usuario_registra INT NOT NULL,
 	nombre_producto VARCHAR(100) NOT NULL,
 	cantidad INT NOT NULL,
