@@ -32,10 +32,14 @@ CREATE TABLE mercancia (
 	id_usuario_registra INT NOT NULL,
 	nombre_producto VARCHAR(100) NOT NULL,
 	cantidad INT NOT NULL,
-	fecha_ingreso TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	fecha_ingreso DATE NOT NULL DEFAULT CURRENT_DATE,
 	fecha_registro TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+	id_usuario_actualiza INT NULL,
+	fecha_actualizacion TIMESTAMP NULL DEFAULT CURRENT_TIMESTAMP,
 	CONSTRAINT pk_mercancia PRIMARY KEY (id_mercancia),
-	CONSTRAINT fk_usuario_mercancia FOREIGN KEY (id_usuario_registra) REFERENCES usuario (id_usuario),
+	CONSTRAINT uq_nombre_producto_mercancia UNIQUE (nombre_producto),
+	CONSTRAINT fk_usuario_registra_mercancia FOREIGN KEY (id_usuario_registra) REFERENCES usuario (id_usuario),
+	CONSTRAINT fk_usuario_actualiza_mercancia FOREIGN KEY (id_usuario_actualiza) REFERENCES usuario (id_usuario),
 	CONSTRAINT chk_cantidad_mercancia CHECK (cantidad > 0),
-	CONSTRAINT chk_fecha_ingreso_mercancia CHECK (fecha_ingreso < CURRENT_TIMESTAMP)
+	CONSTRAINT chk_fecha_ingreso_mercancia CHECK (fecha_ingreso <= CURRENT_DATE)
 );
