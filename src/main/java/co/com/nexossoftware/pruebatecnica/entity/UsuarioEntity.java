@@ -1,6 +1,7 @@
 package co.com.nexossoftware.pruebatecnica.entity;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -69,6 +71,12 @@ public class UsuarioEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "fecha_registro", nullable = false, updatable = false)
 	private Date fechaRegistro;
+
+	/**
+	 * Lista de mercancías registradas por el usuario.
+	 */
+	@OneToMany(mappedBy = "usuarioRegistraEntity", fetch = FetchType.LAZY)
+	private List<MercanciaEntity> mercanciaEntityList;
 
 	/**
 	 * Retorna el valor de la propiedad {@link #idUsuario}.<br/>
