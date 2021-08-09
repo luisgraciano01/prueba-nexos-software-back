@@ -110,4 +110,32 @@ public class MercanciaServiceImpl implements MercanciaService {
 		return false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * co.com.nexossoftware.pruebatecnica.service.MercanciaService#findById(java.
+	 * lang.Integer)
+	 */
+	@Override
+	public MercanciaOutDto findById(Integer idMercancia) {
+		MercanciaEntity mercanciaEntity = this.mercanciaRepository.findById(idMercancia).orElse(null);
+
+		if (mercanciaEntity != null) {
+			MercanciaOutDto mercanciaOutDto = new MercanciaOutDto();
+			mercanciaOutDto.setIdMercancia(mercanciaEntity.getIdMercancia());
+			mercanciaOutDto.setNombreProducto(mercanciaEntity.getNombreProducto());
+			mercanciaOutDto.setCantidad(mercanciaEntity.getCantidad());
+			mercanciaOutDto.setFechaIngreso(mercanciaEntity.getFechaIngreso());
+			mercanciaOutDto.setFechaRegistro(mercanciaEntity.getFechaRegistro());
+			mercanciaOutDto.setUsuarioRegistra(new UsuarioOutDto());
+			mercanciaOutDto.getUsuarioRegistra().setIdUsuario(mercanciaEntity.getUsuarioRegistraEntity().getIdUsuario());
+			mercanciaOutDto.getUsuarioRegistra().setNombre(mercanciaEntity.getUsuarioRegistraEntity().getNombre());
+
+			return mercanciaOutDto;
+		}
+
+		return null;
+	}
+
 }

@@ -79,4 +79,27 @@ public interface MercanciaController {
 	 *         registro de la mercancía." } } <br/>
 	 */
 	public ResponseEntity<RespuestaDto> save(RegistrarMercanciaInDto registrarMercanciaInDto);
+
+	/**
+	 * Endpoint que obtiene los datos de una mercancía registrada en la base de
+	 * datos.
+	 * 
+	 * @param idMercancia Identificador de la mercancía.
+	 * @return Objeto {@link ResponseEntity} con un objeto
+	 *         {@link MercanciaOutDto}.<br/>
+	 *         <br/>
+	 *         Ejemplo 1: HTTP Status 200<br/>
+	 *         {@code { "estado" true, "data": {"idMercancia": 1,
+	 *         "nombreProducto": "Llanta 195/65R15 91H FSR801", "cantidad": "15",
+	 *         "fechaIngreso": "2021-05-24", "fechaRegistro": "2021-05-24 14:23:10",
+	 *         "usuario": { "idUsuario": 1, "nombre": "Luis Graciano" } } } } <br/>
+	 *         <br/>
+	 *         Ejemplo 2: HTTP Status 200<br/>
+	 *         {@code { "estado" true, "data": null } } <br/>
+	 *         <br/>
+	 *         Ejemplo 3: HTTP Status 200<br/>
+	 *         {@code { "estado" false, "mensaje": "Ha ocurrido un error durante la
+	 *         consulta de la mercancía." } } <br/>
+	 */
+	public ResponseEntity<RespuestaDto> findById(Integer idMercancia);
 }

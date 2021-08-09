@@ -117,4 +117,27 @@ public class MercanciaControllerImpl implements MercanciaController {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * co.com.nexossoftware.pruebatecnica.controller.MercanciaController#findById(
+	 * java.lang.Integer)
+	 */
+	@Override
+	@GetMapping(path = "/findById")
+	public ResponseEntity<RespuestaDto> findById(@RequestParam(required = true) Integer idMercancia) {
+		try {
+			return ResponseEntity
+					.status(HttpStatus.OK)
+					.body(new RespuestaDto(true, null,
+							this.mercanciaService.findById(idMercancia)));
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return ResponseEntity
+					.status(HttpStatus.OK)
+					.body(new RespuestaDto(false, "Ha ocurrido un error durante el registro de la mercancía."));
+		}
+	}
+
 }

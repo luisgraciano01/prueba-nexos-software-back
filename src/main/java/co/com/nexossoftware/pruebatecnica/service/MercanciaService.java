@@ -46,4 +46,13 @@ public interface MercanciaService {
 	 */
 	public boolean save(RegistrarMercanciaInDto registrarMercanciaInDto);
 
+	/**
+	 * Busca en la base de datos una mercancía por su identificador.
+	 * 
+	 * @param idMercancia Identificador de la mercancía.
+	 * @return {@link MercanciaOutDto} con los datos de la mercancía encontrada, de
+	 *         lo contrario {@code null}.
+	 */
+	public MercanciaOutDto findById(Integer idMercancia);
+
 }
