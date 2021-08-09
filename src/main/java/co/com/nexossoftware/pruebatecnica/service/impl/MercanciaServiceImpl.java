@@ -64,4 +64,16 @@ public class MercanciaServiceImpl implements MercanciaService {
 				.collect(Collectors.toList());
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * co.com.nexossoftware.pruebatecnica.service.MercanciaService#existeMercancia(
+	 * java.lang.String)
+	 */
+	@Override
+	public boolean existeMercancia(String nombreProducto) {
+		return this.mercanciaRepository.findByNombreProducto(nombreProducto).orElse(null) != null;
+	}
+
 }

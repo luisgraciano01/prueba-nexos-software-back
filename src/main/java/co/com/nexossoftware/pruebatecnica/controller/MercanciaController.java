@@ -39,4 +39,24 @@ public interface MercanciaController {
 	 *         consulta de las mercancías." } } <br/>
 	 */
 	public ResponseEntity<RespuestaDto> findByMultipleCriteria(String nombreProducto, Integer idUsuarioRegistra, Date fechaIngreso);
+
+	/**
+	 * Endpoint que verifica si existe mercancía registrada con un nombre de
+	 * producto determinada.
+	 * 
+	 * @param nombreProducto Nombre del producto.
+	 * @return - {@code true} si existe la mercancía.<br/>
+	 *         - {@code false} si no existe la mercancía.<br/>
+	 *         <br/>
+	 *         Ejemplo 1: HTTP Status 200<br/>
+	 *         {@code { "estado" true, "data": true } } <br/>
+	 *         <br/>
+	 *         Ejemplo 2: HTTP Status 200<br/>
+	 *         {@code { "estado" true, "data": false } } <br/>
+	 *         <br/>
+	 *         Ejemplo 3: HTTP Status 200<br/>
+	 *         {@code { "estado" false, "mensaje": "Ha ocurrido un error durante la
+	 *         consulta de la mercancía." } } <br/>
+	 */
+	public ResponseEntity<RespuestaDto> checkIfExistsMercancia(String nombreProducto);
 }

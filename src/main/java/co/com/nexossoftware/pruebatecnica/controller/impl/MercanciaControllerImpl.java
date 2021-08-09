@@ -67,4 +67,26 @@ public class MercanciaControllerImpl implements MercanciaController {
 		}
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see co.com.nexossoftware.pruebatecnica.controller.MercanciaController#
+	 * checkIfExistsMercancia(java.lang.String)
+	 */
+	@GetMapping(path = "/checkIfExistsMercancia")
+	@Override
+	public ResponseEntity<RespuestaDto> checkIfExistsMercancia(@RequestParam(required = true) String nombreProducto) {
+		try {
+			return ResponseEntity
+					.status(HttpStatus.OK)
+					.body(new RespuestaDto(true, null,
+							this.mercanciaService.existeMercancia(nombreProducto)));
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return ResponseEntity
+					.status(HttpStatus.OK)
+					.body(new RespuestaDto(false, "Ha ocurrido un error durante la consulta de  las mercancías."));
+		}
+	}
+
 }

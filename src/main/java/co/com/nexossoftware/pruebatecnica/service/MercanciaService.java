@@ -25,4 +25,15 @@ public interface MercanciaService {
 	 *         las mercancías encontradas.
 	 */
 	public List<MercanciaOutDto> findByMultipleCriteria(String nombreProducto, Integer idUsuarioRegistra, Date fechaIngreso);
+
+	/**
+	 * Determina si existe una mercancía por un nombre producto.
+	 * 
+	 * @param nombreProducto Nombre del producto.
+	 * @return - {@code true} si existe la mercancía.<br/>
+	 *         - {@code false} si no existe la mercancía.
+	 * 
+	 */
+	public boolean existeMercancia(String nombreProducto);
+
 }

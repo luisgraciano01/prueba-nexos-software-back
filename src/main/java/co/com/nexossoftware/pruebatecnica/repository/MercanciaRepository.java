@@ -1,6 +1,7 @@
 package co.com.nexossoftware.pruebatecnica.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -34,4 +35,7 @@ public interface MercanciaRepository extends JpaRepository<MercanciaEntity, Inte
 			+ " AND (:idUsuarioRegistra IS NULL OR m.idUsuarioRegistra = :idUsuarioRegistra)"
 			+ " AND (:fechaIngreso IS NULL OR cast(m.fechaIngreso as date) = TO_DATE(cast(:fechaIngreso as text), 'DD/MM/YYYY'))")
 	public List<MercanciaEntity> findByMultipleCriteria(String nombreProducto, Integer idUsuarioRegistra, String fechaIngreso);
+
+	public Optional<MercanciaEntity> findByNombreProducto(String nombreProducto);
+
 }
