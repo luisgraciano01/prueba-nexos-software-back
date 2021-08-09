@@ -3,6 +3,7 @@ package co.com.nexossoftware.pruebatecnica.service;
 import java.util.Date;
 import java.util.List;
 
+import co.com.nexossoftware.pruebatecnica.dto.EditarMercanciaInDto;
 import co.com.nexossoftware.pruebatecnica.dto.MercanciaOutDto;
 import co.com.nexossoftware.pruebatecnica.dto.RegistrarMercanciaInDto;
 
@@ -40,9 +41,9 @@ public interface MercanciaService {
 	/**
 	 * Registra en base de datos una mercancía
 	 * 
-	 * @param nombreProducto Nombre del producto.
-	 * @return - {@code true} si regitró la mercancía con éxito.<br/>
-	 *         - {@code false} si no regitró existe la mercancía.
+	 * @param registrarMercanciaInDto Datos de la mercancía a registrar.
+	 * @return - {@code true} si registró la mercancía con éxito.<br/>
+	 *         - {@code false} si no regitró la mercancía.
 	 */
 	public boolean save(RegistrarMercanciaInDto registrarMercanciaInDto);
 
@@ -54,5 +55,14 @@ public interface MercanciaService {
 	 *         lo contrario {@code null}.
 	 */
 	public MercanciaOutDto findById(Integer idMercancia);
+
+	/**
+	 * Actualiza en base de datos una mercancía
+	 * 
+	 * @param editarMercanciaInDto Datos de la mercancía a actualizar.
+	 * @return - {@code true} si actualizó la mercancía con éxito.<br/>
+	 *         - {@code false} si no actualizó la mercancía.
+	 */
+	public boolean update(EditarMercanciaInDto editarMercanciaInDto);
 
 }

@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import co.com.nexossoftware.pruebatecnica.controller.MercanciaController;
+import co.com.nexossoftware.pruebatecnica.dto.EditarMercanciaInDto;
 import co.com.nexossoftware.pruebatecnica.dto.RegistrarMercanciaInDto;
 import co.com.nexossoftware.pruebatecnica.dto.RespuestaDto;
 import co.com.nexossoftware.pruebatecnica.service.MercanciaService;
@@ -132,6 +133,29 @@ public class MercanciaControllerImpl implements MercanciaController {
 					.status(HttpStatus.OK)
 					.body(new RespuestaDto(true, null,
 							this.mercanciaService.findById(idMercancia)));
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return ResponseEntity
+					.status(HttpStatus.OK)
+					.body(new RespuestaDto(false, "Ha ocurrido un error durante el registro de la mercancía."));
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * co.com.nexossoftware.pruebatecnica.controller.MercanciaController#update(co.
+	 * com.nexossoftware.pruebatecnica.dto.EditarMercanciaInDto)
+	 */
+	@Override
+	@PostMapping(path = "/update")
+	public ResponseEntity<RespuestaDto> update(@Valid @RequestBody EditarMercanciaInDto editarMercanciaInDto) {
+		try {
+			return ResponseEntity
+					.status(HttpStatus.OK)
+					.body(new RespuestaDto(true, null,
+							this.mercanciaService.update(editarMercanciaInDto)));
 		} catch (Exception e) {
 			LOGGER.error(e.getMessage(), e);
 			return ResponseEntity

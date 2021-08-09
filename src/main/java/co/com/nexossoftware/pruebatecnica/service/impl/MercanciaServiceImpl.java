@@ -10,6 +10,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import co.com.nexossoftware.pruebatecnica.dto.EditarMercanciaInDto;
 import co.com.nexossoftware.pruebatecnica.dto.MercanciaOutDto;
 import co.com.nexossoftware.pruebatecnica.dto.RegistrarMercanciaInDto;
 import co.com.nexossoftware.pruebatecnica.dto.UsuarioOutDto;
@@ -136,6 +137,35 @@ public class MercanciaServiceImpl implements MercanciaService {
 		}
 
 		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * co.com.nexossoftware.pruebatecnica.service.MercanciaService#update(co.com.
+	 * nexossoftware.pruebatecnica.dto.EditarMercanciaInDto)
+	 */
+	@Override
+	public boolean update(EditarMercanciaInDto editarMercanciaInDto) {
+		try {
+			MercanciaEntity mercanciaEntity = this.mercanciaRepository.findById(editarMercanciaInDto.getIdMercancia()).orElse(null);
+
+			if (mercanciaEntity != null) {
+				mercanciaEntity.setNombreProducto(editarMercanciaInDto.getNombreProducto().trim());
+				mercanciaEntity.setCantidad(editarMercanciaInDto.getCantidad());
+				mercanciaEntity.setFechaIngreso(editarMercanciaInDto.getFechaIngreso());
+
+				this.mercanciaRepository.save(mercanciaEntity);
+
+				return true;
+			}
+
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+		}
+
+		return false;
 	}
 
 }

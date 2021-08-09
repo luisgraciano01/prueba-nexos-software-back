@@ -4,6 +4,7 @@ import java.util.Date;
 
 import org.springframework.http.ResponseEntity;
 
+import co.com.nexossoftware.pruebatecnica.dto.EditarMercanciaInDto;
 import co.com.nexossoftware.pruebatecnica.dto.MercanciaOutDto;
 import co.com.nexossoftware.pruebatecnica.dto.RegistrarMercanciaInDto;
 import co.com.nexossoftware.pruebatecnica.dto.RespuestaDto;
@@ -102,4 +103,24 @@ public interface MercanciaController {
 	 *         consulta de la mercancía." } } <br/>
 	 */
 	public ResponseEntity<RespuestaDto> findById(Integer idMercancia);
+
+	/**
+	 * Endpoint que actualiza en base de datos una mercancía.
+	 * 
+	 * @param editarMercanciaInDto Datos de la mercancía a actualizar.
+	 * @return - {@code true} si se registró la mercancía.<br/>
+	 *         - {@code false} si no se registró la mercancía.<br/>
+	 *         <br/>
+	 *         Ejemplo 1: HTTP Status 200<br/>
+	 *         {@code { "estado" true, "data": true } } <br/>
+	 *         <br/>
+	 *         Ejemplo 2: HTTP Status 200<br/>
+	 *         {@code { "estado" true, "data": false } } <br/>
+	 *         <br/>
+	 *         Ejemplo 3: HTTP Status 200<br/>
+	 *         {@code { "estado" false, "mensaje": "Ha ocurrido un error durante el
+	 *         registro de la mercancía." } } <br/>
+	 */
+	public ResponseEntity<RespuestaDto> update(EditarMercanciaInDto editarMercanciaInDto);
+
 }
