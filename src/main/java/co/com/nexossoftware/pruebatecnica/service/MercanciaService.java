@@ -65,4 +65,13 @@ public interface MercanciaService {
 	 */
 	public boolean update(EditarMercanciaInDto editarMercanciaInDto);
 
+	/**
+	 * Elimina en base de datos una mercancía
+	 * 
+	 * @param idMercancia Identificador de la mercancía.
+	 * @return - {@code true} si eliminó la mercancía con éxito.<br/>
+	 *         - {@code false} si no eliminó la mercancía.
+	 */
+	public boolean delete(Integer idMercancia);
+
 }

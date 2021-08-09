@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import co.com.nexossoftware.pruebatecnica.controller.MercanciaController;
 import co.com.nexossoftware.pruebatecnica.dto.EditarMercanciaInDto;
+import co.com.nexossoftware.pruebatecnica.dto.EliminarMercanciaInDto;
 import co.com.nexossoftware.pruebatecnica.dto.RegistrarMercanciaInDto;
 import co.com.nexossoftware.pruebatecnica.dto.RespuestaDto;
 import co.com.nexossoftware.pruebatecnica.service.MercanciaService;
@@ -91,7 +92,7 @@ public class MercanciaControllerImpl implements MercanciaController {
 			LOGGER.error(e.getMessage(), e);
 			return ResponseEntity
 					.status(HttpStatus.OK)
-					.body(new RespuestaDto(false, "Ha ocurrido un error durante la consulta de  las mercancías."));
+					.body(new RespuestaDto(false, "Ha ocurrido un error durante la consulta de las mercancías."));
 		}
 	}
 
@@ -137,7 +138,7 @@ public class MercanciaControllerImpl implements MercanciaController {
 			LOGGER.error(e.getMessage(), e);
 			return ResponseEntity
 					.status(HttpStatus.OK)
-					.body(new RespuestaDto(false, "Ha ocurrido un error durante el registro de la mercancía."));
+					.body(new RespuestaDto(false, "Ha ocurrido un error durante la consulta de la mercancía."));
 		}
 	}
 
@@ -160,7 +161,30 @@ public class MercanciaControllerImpl implements MercanciaController {
 			LOGGER.error(e.getMessage(), e);
 			return ResponseEntity
 					.status(HttpStatus.OK)
-					.body(new RespuestaDto(false, "Ha ocurrido un error durante el registro de la mercancía."));
+					.body(new RespuestaDto(false, "Ha ocurrido un error durante la actualización de la mercancía."));
+		}
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * co.com.nexossoftware.pruebatecnica.controller.MercanciaController#delete(co.
+	 * com.nexossoftware.pruebatecnica.dto.EliminarMercanciaInDto)
+	 */
+	@Override
+	@PostMapping(path = "/delete")
+	public ResponseEntity<RespuestaDto> delete(@Valid @RequestBody EliminarMercanciaInDto eliminarMercanciaInDto) {
+		try {
+			return ResponseEntity
+					.status(HttpStatus.OK)
+					.body(new RespuestaDto(true, null,
+							this.mercanciaService.delete(eliminarMercanciaInDto.getIdMercancia())));
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+			return ResponseEntity
+					.status(HttpStatus.OK)
+					.body(new RespuestaDto(false, "Ha ocurrido un error durante la eliminación de la mercancía."));
 		}
 	}
 

@@ -168,4 +168,24 @@ public class MercanciaServiceImpl implements MercanciaService {
 		return false;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see
+	 * co.com.nexossoftware.pruebatecnica.service.MercanciaService#delete(java.lang.
+	 * Integer)
+	 */
+	@Override
+	public boolean delete(Integer idMercancia) {
+		try {
+			this.mercanciaRepository.deleteById(idMercancia);
+
+			return true;
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+		}
+
+		return false;
+	}
+
 }
