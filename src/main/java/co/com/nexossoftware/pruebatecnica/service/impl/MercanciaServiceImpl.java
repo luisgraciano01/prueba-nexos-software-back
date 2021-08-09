@@ -5,10 +5,13 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import co.com.nexossoftware.pruebatecnica.dto.MercanciaOutDto;
+import co.com.nexossoftware.pruebatecnica.dto.RegistrarMercanciaInDto;
 import co.com.nexossoftware.pruebatecnica.dto.UsuarioOutDto;
 import co.com.nexossoftware.pruebatecnica.entity.MercanciaEntity;
 import co.com.nexossoftware.pruebatecnica.repository.MercanciaRepository;
@@ -27,6 +30,8 @@ import co.com.nexossoftware.pruebatecnica.service.MercanciaService;
  */
 @Service("MercanciaService")
 public class MercanciaServiceImpl implements MercanciaService {
+
+	private static final Logger LOGGER = LoggerFactory.getLogger(MercanciaServiceImpl.class);
 
 	/**
 	 * Instancia de la implementación del repositorio de {@link MercanciaEntity}.
@@ -74,6 +79,35 @@ public class MercanciaServiceImpl implements MercanciaService {
 	@Override
 	public boolean existeMercancia(String nombreProducto) {
 		return this.mercanciaRepository.findByNombreProducto(nombreProducto).orElse(null) != null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see co.com.nexossoftware.pruebatecnica.service.MercanciaService#save(co.com.
+	 * nexossoftware.pruebatecnica.dto.RegistrarMercanciaInDto)
+	 */
+	@Override
+	public boolean save(RegistrarMercanciaInDto registrarMercanciaInDto) {
+		try {
+			if (!this.existeMercancia(registrarMercanciaInDto.getNombreProducto().trim())) {
+				MercanciaEntity mercanciaEntity = new MercanciaEntity();
+				mercanciaEntity.setIdUsuarioRegistra(registrarMercanciaInDto.getIdUsuarioRegistra());
+				mercanciaEntity.setNombreProducto(registrarMercanciaInDto.getNombreProducto().trim());
+				mercanciaEntity.setCantidad(registrarMercanciaInDto.getCantidad());
+				mercanciaEntity.setFechaIngreso(registrarMercanciaInDto.getFechaIngreso());
+				mercanciaEntity.setFechaRegistro(new Date());
+
+				this.mercanciaRepository.save(mercanciaEntity);
+
+				return true;
+			}
+
+		} catch (Exception e) {
+			LOGGER.error(e.getMessage(), e);
+		}
+
+		return false;
 	}
 
 }

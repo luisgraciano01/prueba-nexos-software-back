@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 
 import co.com.nexossoftware.pruebatecnica.dto.MercanciaOutDto;
+import co.com.nexossoftware.pruebatecnica.dto.RegistrarMercanciaInDto;
 
 /**
  * Interfaz service que determina los métodos de lógica de negocio relacionada a
@@ -35,5 +36,14 @@ public interface MercanciaService {
 	 * 
 	 */
 	public boolean existeMercancia(String nombreProducto);
+
+	/**
+	 * Registra en base de datos una mercancía
+	 * 
+	 * @param nombreProducto Nombre del producto.
+	 * @return - {@code true} si regitró la mercancía con éxito.<br/>
+	 *         - {@code false} si no regitró existe la mercancía.
+	 */
+	public boolean save(RegistrarMercanciaInDto registrarMercanciaInDto);
 
 }
