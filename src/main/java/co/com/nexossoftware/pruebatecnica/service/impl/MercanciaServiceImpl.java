@@ -155,6 +155,8 @@ public class MercanciaServiceImpl implements MercanciaService {
 				mercanciaEntity.setNombreProducto(editarMercanciaInDto.getNombreProducto().trim());
 				mercanciaEntity.setCantidad(editarMercanciaInDto.getCantidad());
 				mercanciaEntity.setFechaIngreso(editarMercanciaInDto.getFechaIngreso());
+				mercanciaEntity.setIdUsuarioActualiza(editarMercanciaInDto.getIdUsuarioActualiza());
+				mercanciaEntity.setFechaActualizacion(new Date());
 
 				this.mercanciaRepository.save(mercanciaEntity);
 

@@ -61,7 +61,7 @@ public class MercanciaEntity {
 	/**
 	 * Fecha de ingreso de la mercancía en el inventario.
 	 */
-	@Temporal(TemporalType.TIMESTAMP)
+	@Temporal(TemporalType.DATE)
 	@Column(name = "fecha_ingreso", nullable = false)
 	private Date fechaIngreso;
 
@@ -71,6 +71,23 @@ public class MercanciaEntity {
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "fecha_registro", nullable = false, updatable = false)
 	private Date fechaRegistro;
+
+	/**
+	 * Identificador del último usuario que actualizón la mercancia.
+	 */
+	@Column(name = "id_usuario_actualiza", nullable = true)
+	private Integer idUsuarioActualiza;
+
+	@ManyToOne(fetch = FetchType.LAZY, optional = false)
+	@JoinColumn(name = "id_usuario_actualiza", nullable = false, insertable = false, updatable = false)
+	private UsuarioEntity usuarioActualizaEntity;
+
+	/**
+	 * Fecha de la última actualización de la mercancía en la base datos.
+	 */
+	@Temporal(TemporalType.TIMESTAMP)
+	@Column(name = "fecha_actualizacion", nullable = true)
+	private Date fechaActualizacion;
 
 	/**
 	 * Retorna el valor de la propiedad {@link #idMercancia}.<br/>
@@ -236,6 +253,79 @@ public class MercanciaEntity {
 	 */
 	public void setFechaRegistro(Date fechaRegistro) {
 		this.fechaRegistro = fechaRegistro;
+	}
+
+	/**
+	 * Retorna el valor de la propiedad {@link #idUsuarioActualiza}.<br/>
+	 * <br/>
+	 * Creado el 09-08-2021.
+	 *
+	 * @return {@link Integer}, con el valor de la propiedad
+	 *         {@link #idUsuarioActualiza}.</b>
+	 */
+	public Integer getIdUsuarioActualiza() {
+		return idUsuarioActualiza;
+	}
+
+	/**
+	 * Asigna un valor a la propiedad {@link #idUsuarioActualiza}.<br/>
+	 * <br/>
+	 * Creado el 09-08-2021.
+	 *
+	 * @param idUsuarioActualiza Un valor de tipo {@link Integer} a asignar a la
+	 *                           propiedad {@link #idUsuarioActualiza}.
+	 */
+	public void setIdUsuarioActualiza(Integer idUsuarioActualiza) {
+		this.idUsuarioActualiza = idUsuarioActualiza;
+	}
+
+	/**
+	 * Retorna el valor de la propiedad {@link #usuarioActualizaEntity}.<br/>
+	 * <br/>
+	 * Creado el 09-08-2021.
+	 *
+	 * @return {@link UsuarioEntity}, con el valor de la propiedad
+	 *         {@link #usuarioActualizaEntity}.</b>
+	 */
+	public UsuarioEntity getUsuarioActualizaEntity() {
+		return usuarioActualizaEntity;
+	}
+
+	/**
+	 * Asigna un valor a la propiedad {@link #usuarioActualizaEntity}.<br/>
+	 * <br/>
+	 * Creado el 09-08-2021.
+	 *
+	 * @param usuarioActualizaEntity Un valor de tipo {@link UsuarioEntity} a
+	 *                               asignar a la propiedad
+	 *                               {@link #usuarioActualizaEntity}.
+	 */
+	public void setUsuarioActualizaEntity(UsuarioEntity usuarioActualizaEntity) {
+		this.usuarioActualizaEntity = usuarioActualizaEntity;
+	}
+
+	/**
+	 * Retorna el valor de la propiedad {@link #fechaActualizacion}.<br/>
+	 * <br/>
+	 * Creado el 09-08-2021.
+	 *
+	 * @return {@link Date}, con el valor de la propiedad
+	 *         {@link #fechaActualizacion}.</b>
+	 */
+	public Date getFechaActualizacion() {
+		return fechaActualizacion;
+	}
+
+	/**
+	 * Asigna un valor a la propiedad {@link #fechaActualizacion}.<br/>
+	 * <br/>
+	 * Creado el 09-08-2021.
+	 *
+	 * @param fechaActualizacion Un valor de tipo {@link Date} a asignar a la
+	 *                           propiedad {@link #fechaActualizacion}.
+	 */
+	public void setFechaActualizacion(Date fechaActualizacion) {
+		this.fechaActualizacion = fechaActualizacion;
 	}
 
 }
